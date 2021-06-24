@@ -1,38 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('partials/header.ejs') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= title %>
-    </title>
-</head>
+    <body>
+        <h1>Homepage</h1>
+        <ul>
+            <% for(let oneclass of classes){ %>
+                <li>
+                    <a href="">
+                        <%= oneclass.name %>
+                    </a>
+                    <ul>
+                        <% for(let student of oneclass.students){ %>
+                            <li>
+                                <a href="">
+                                    <%= student %>
+                                </a>
+                            </li>
+                            <% } %>
+                    </ul>
+                </li>
 
-<body>
-    <h1>Homepage</h1>
-    <ul>
-        <% for(let i=0; i<Object.keys(classes).length ; i++){ %>
+                <% } %>
+        </ul>
+    </body>
 
-            <li>
-                <a href="">
-                    <%= Object.keys(classes)[i] %>
-                </a>
-
-                <ul>
-                    <% for(let j=0; j<Object.values(classes)[i].length ; j++){ %>
-                        <li>
-                            <a href="">
-                                <%= Object.values(classes)[i][j] %>
-                            </a>
-                        </li>
-                        <% } %>
-                </ul>
-            </li>
-
-            <% } %>
-    </ul>
-</body>
-
-</html>
+    </html>
