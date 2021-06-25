@@ -1,26 +1,27 @@
 <%- include('partials/header.ejs') %>
 
     <body>
-        <h1>Homepage</h1>
-        <ul>
-            <% for(let oneclass of classes){ %>
-                <li>
-                    <a href="">
-                        <%= oneclass.name %>
-                    </a>
-                    <ul>
-                        <% for(let student of oneclass.students){ %>
-                            <li>
-                                <a href="">
-                                    <%= student %>
-                                </a>
-                            </li>
-                            <% } %>
-                    </ul>
-                </li>
+        <%- include('partials/navbar.ejs') %>
+            <h1>Homepage</h1>
+            <ul>
+                <% for(let oneclass of classes){ %>
+                    <li>
+                        <a href=<%=`/classes/${oneclass._id}`%> >
+                            <%= oneclass.name %>
+                        </a>
+                        <ul>
+                            <% for(let student of oneclass.students){ %>
+                                <li>
+                                    <a href="">
+                                        <%= student %>
+                                    </a>
+                                </li>
+                                <% } %>
+                        </ul>
+                    </li>
 
-                <% } %>
-        </ul>
+                    <% } %>
+            </ul>
     </body>
 
     </html>

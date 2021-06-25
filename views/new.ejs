@@ -2,38 +2,39 @@
 
 
     <body>
-        <script type="text/javascript">
-            var data = new Array(); // creating array
+        <%- include('partials/navbar.ejs') %>
+            <script type="text/javascript">
+                var data = new Array(); // creating array
 
-            function add_element() {
-                data.push(document.getElementById('t1').value); // adding element to array
-                document.getElementById('t1').value = ''; // Making the text box blank
-                disp(); // displaying the array elements
-            }
-            function remove_element(index_no) {
-                var t1 = data.splice(index_no, 1);
-                disp(); // displaying the array elements
-            }
-            function disp() {
-                var str = '';
-                for (i = 0; i < data.length; i++) {
-                    str += i + ':' + data[i] + " <a onClick='remove_element(" + data.indexOf(data[i]) + ")'> Remove</a> " + "<br >";  // adding each element with key number to variable
+                function add_element() {
+                    data.push(document.getElementById('t1').value); // adding element to array
+                    document.getElementById('t1').value = ''; // Making the text box blank
+                    disp(); // displaying the array elements
                 }
-                document.getElementById('disp').innerHTML = str; // Display the elements of the array
-            }
+                function remove_element(index_no) {
+                    var t1 = data.splice(index_no, 1);
+                    disp(); // displaying the array elements
+                }
+                function disp() {
+                    var str = '';
+                    for (i = 0; i < data.length; i++) {
+                        str += i + ':' + data[i] + " <a onClick='remove_element(" + data.indexOf(data[i]) + ")'> Remove</a> " + "<br >";  // adding each element with key number to variable
+                    }
+                    document.getElementById('disp').innerHTML = str; // Display the elements of the array
+                }
 
-        </script>
+            </script>
 
-        <h1>Create a new Class</h1>
-        <form action="/classes" method="POST">
-            <label for="name">Enter a New Class Name</label>
-            <input type="text" name="name" id="class" placeholder="Class Name">
-            <label for="students">Enter a Student Name</label>
-            <input type="text" name="students" id="t1" placeholder="Student Name"><input type=button value='Add'
-                onClick='add_element()' ;>
-            <input type="submit" value="Submit" onclick="document.getElementById('t1').value = data">
-        </form>
-        <div id=disp></div>
+            <h1>Create a new Class</h1>
+            <form action="/classes" method="POST">
+                <label for="name">Enter a New Class Name</label>
+                <input type="text" name="name" id="class" placeholder="Class Name">
+                <label for="students">Enter a Student Name</label>
+                <input type="text" name="students" id="t1" placeholder="Student Name"><input type=button value='Add'
+                    onClick='add_element()' ;>
+                <input type="submit" value="Submit" onclick="document.getElementById('t1').value = data">
+            </form>
+            <div id=disp></div>
     </body>
 
     </html>

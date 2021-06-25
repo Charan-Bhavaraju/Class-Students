@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Class = require('./models/class')
+const Class = require('./models/class');
+const methodOverride = require('method-override');
+
 
 mongoose.connect('mongodb://localhost:27017/ClassApp', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -14,7 +16,9 @@ mongoose.connect('mongodb://localhost:27017/ClassApp', { useNewUrlParser: true, 
 const app = express();
 app.set('view engine', 'ejs');
 
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
+
 
 app.listen(3000, () => {
     console.log('Listening on port 3000!');
@@ -41,4 +45,10 @@ app.get('/classes/:id', async (req, res) => {
     const { id } = req.params;
     const foundclass = await Class.findById(id);
     res.render('show.ejs', { foundclass, title: foundclass.name })
+})
+
+app.delete('/classes/:id', async (req, res) => {
+    const { id } = req.params;
+    const deletedClass = await Class.findByIdAndDelete(id);
+    res.redirect('/classes');
 })

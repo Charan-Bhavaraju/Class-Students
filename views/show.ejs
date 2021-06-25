@@ -1,16 +1,20 @@
 <%- include('partials/header.ejs') %>
 
     <body>
-        <h3>
-            <%= foundclass.name %>
-        </h3>
-        <ol>
-            <% for(student of foundclass.students) { %>
-                <li>
-                    <%= student %>
-                </li>
-                <% } %>
-        </ol>
+        <%- include('partials/navbar.ejs') %>
+            <h3>
+                <%= foundclass.name %>
+            </h3>
+            <ol>
+                <% for(student of foundclass.students) { %>
+                    <li>
+                        <%= student %>
+                    </li>
+                    <% } %>
+            </ol>
+            <form action="/classes/<%=foundclass._id%>?_method=DELETE" method="POST">
+                <button>Delete</button>
+            </form>
     </body>
 
     </html>
