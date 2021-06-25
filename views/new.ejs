@@ -19,20 +19,19 @@
                 for (i = 0; i < data.length; i++) {
                     str += i + ':' + data[i] + " <a onClick='remove_element(" + data.indexOf(data[i]) + ")'> Remove</a> " + "<br >";  // adding each element with key number to variable
                 }
-
                 document.getElementById('disp').innerHTML = str; // Display the elements of the array
-                document.getElementById('t1').value = data;
             }
+
         </script>
 
         <h1>Create a new Class</h1>
         <form action="/classes" method="POST">
-            <label for="class">Enter a New Class Name</label>
-            <input type="text" name="class" id="class" placeholder="Class Name">
-            <label for="student">Enter a Student Name</label>
-            <input type="text" name="student" id="t1" placeholder="Student Name"><input type=button value='Add'
+            <label for="name">Enter a New Class Name</label>
+            <input type="text" name="name" id="class" placeholder="Class Name">
+            <label for="students">Enter a Student Name</label>
+            <input type="text" name="students" id="t1" placeholder="Student Name"><input type=button value='Add'
                 onClick='add_element()' ;>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" onclick="document.getElementById('t1').value = data">
         </form>
         <div id=disp></div>
     </body>

@@ -30,13 +30,15 @@ app.get('/classes/new', (req, res) => {
 });
 
 app.post('/classes', async (req, res) => {
-    res.send(req.body);
-    // const newClass = new Class(req.body);
-    // await newClass.save();
-    // res.redirect(`/products/${newClass._id}`)
+    const students = req.body.students.split(',')
+    const name = req.body.name
+    const newClass = new Class({ name, students });
+    await newClass.save();
+    res.redirect(`/classes/${newClass._id}`)
 });
 
-
-app.get('/:cid', (req, res) => {
-    res.render('class.ejs', { title: 'Class', classes: { 'C1': [1, 2, 3], 'C2': [1, 2, 3], 'C3': [1, 2, 3] } })
+app.get('/classes/:id', async (req, res) => {
+    const { id } = req.params;
+    const foundclass = await Class.findById(id);
+    res.render('show.ejs', { foundclass, title: foundclass.name })
 })
