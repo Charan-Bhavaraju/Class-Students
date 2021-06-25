@@ -12,6 +12,7 @@
                     </li>
                     <% } %>
             </ol>
+            <a href=<%=`/classes/${foundclass._id}/edit` %> >Edit</a>
             <form action="/classes/<%=foundclass._id%>?_method=DELETE" method="POST">
                 <button>Delete</button>
             </form>

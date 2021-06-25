@@ -47,6 +47,20 @@ app.get('/classes/:id', async (req, res) => {
     res.render('show.ejs', { foundclass, title: foundclass.name })
 })
 
+app.get('/classes/:id/edit', async (req, res) => {
+    const { id } = req.params;
+    const foundclass = await Class.findById(id);
+    res.render('edit.ejs', { title: 'Edit', foundclass });
+})
+
+app.put('/classes/:id', async (req, res) => {
+    const { id } = req.params;
+    const students = req.body.students.split(',');
+    const name = req.body.name;
+    const foundclass = await Class.findByIdAndUpdate(id, { name, students }, { runValidators: true, new: true });
+    res.redirect(`/classes/${foundclass._id}`);
+})
+
 app.delete('/classes/:id', async (req, res) => {
     const { id } = req.params;
     const deletedClass = await Class.findByIdAndDelete(id);
